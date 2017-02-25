@@ -1,6 +1,6 @@
 ## XBOX, RECORD THAT
 
-I made this program as a joke for me and my friends, it basically waits until you say "XBOX, record that" and then simulates pressing alt-F10 to trigger nVidia Shadowplay.
+I made this program as a joke for me and my friends, it basically waits until you say "XBOX, record that" and then simulates pressing alt-F10 with pyautogui to trigger nVidia Shadowplay.
 
 DEPENDENCIES: 
 

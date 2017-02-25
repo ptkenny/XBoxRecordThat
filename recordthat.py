@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # this won't run on GNU/Linux systems without py3, than again it won't run on
 # GNU/Linux systems at all :^)
-# DIDEY THE FIRST
 
 import speech_recognition as sr
 import pyautogui
