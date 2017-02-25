@@ -3,27 +3,27 @@
 # GNU/Linux systems at all :^)
 # DIDEY THE FIRST
 
-# NOTE: this example requires PyAudio because it uses the Microphone class
-
 import speech_recognition as sr
 import pyautogui
 
 while(True):
-    # obtain audio from the microphone
+	# Sets mic to record from to default device...
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("Say something!")
+        print("Waiting for input...")
         audio = r.listen(source)
     try:
         audio_string = r.recognize_google(audio)
-        print("Google Speech Recognition thinks you said " + audio_string)
+        print("you said: " + audio_string)
+		# Lowers the string here so I don't have to do .lower on all comparisons later.
         check_string = audio_string.lower()
+		# I do this here because google likes to add periods to the end of voice commands.
         check_string = check_string.replace(".", "")
         print("final toCheck: " + check_string)
         if check_string == "xbox record" or check_string == "xbox record that" or check_string == "xbox, record that" or check_string == "xbox, record":
             pyautogui.hotkey('alt', 'f10')
-            print("Recording...")
+            print("Triggering Shadowplay...")
     except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio")
+        print("ERROR: Couldn't understand audio, did you say anything?")
     except sr.RequestError as e:
-        print("Could not request results from Google Speech Recognition service; {0}".format(e))
+        print("Google speech recognition isn't working, check if it's down! error; {0}".format(e))
