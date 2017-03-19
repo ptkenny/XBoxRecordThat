@@ -4,6 +4,10 @@
 
 import speech_recognition as sr
 import pyautogui
+import wmi
+
+pc_info = wmi.WMI()
+gpu_info = pc_info.Win32_VideoController()[0]
 
 while(True):
 	# Sets mic to record from to default device...
@@ -20,8 +24,14 @@ while(True):
         check_string = check_string.replace(".", "")
         print("final toCheck: " + check_string)
         if check_string == "xbox record" or check_string == "xbox record that" or check_string == "xbox, record that" or check_string == "xbox, record":
-            pyautogui.hotkey('alt', 'f10')
-            print("Triggering Shadowplay...")
+	    if "NVIDIA" in gpu_info.Name:
+		print("NVIDIA detected, using SHADOWPLAY.")
+                pyautogui.hotkey('alt', 'f10')
+	    else:
+		print("AMD Detected, using Raptr keyboard shortcut.")
+		pyautogui.hotkey('ctrl', '/')
+		
+            print("Triggering Shadowplay/Raptr...")
     except sr.UnknownValueError:
         print("ERROR: Couldn't understand audio, did you say anything?")
     except sr.RequestError as e:
